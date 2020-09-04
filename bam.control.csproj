@@ -17,11 +17,8 @@
     <OutputPath>\opt\bam\build\release\bam.control\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Bam.Net\_lib\bam.net.core\bam.net.core.csproj" />
-    <ProjectReference Include="..\..\_lib\bam.github\bam.github.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Atlassian.SDK" Version="12.1.1" />
+    <PackageReference Include="bam.net.core" Version="1.0.6" />
   </ItemGroup>
   <Target Name="PublishAll" BeforeTargets="GenerateNuspec">
     <ItemGroup>
