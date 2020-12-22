@@ -1,22 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
-        <RootNamespace>Bam.Control</RootNamespace>
-    </PropertyGroup>
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Bam.Control</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NuspecFile>bam.control.nuspec</NuspecFile>
+    <IntermediatePackDir>$(MSBuildProjectDirectory)/bin/$(Configuration)/</IntermediatePackDir>
+    <PublishDir>$(IntermediatePackDir)$(TargetFramework)/</PublishDir>
+    <NuspecProperties>publishDir=$([MSBuild]::NormalizeDirectory($(IntermediatePackDir)))</NuspecProperties>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Bam.Net\_lib\bam.net.core\bam.net.core.csproj" />
+    <ProjectReference Include="..\..\_lib\bam.github\bam.github.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Atlassian.SDK" Version="12.1.1" />
+  </ItemGroup>
+  <Target Name="PublishAll" BeforeTargets="GenerateNuspec">
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Bam.Net\_lib\bam.net.core\bam.net.core.csproj" />
-      <ProjectReference Include="..\..\_lib\bam.github\bam.github.csproj" />
+      <_TargetFramework Include="$(TargetFrameworks)" />
+      <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="Publish" Properties="TargetFramework=%(_TargetFramework.Identity)" />
     </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Atlassian.SDK" Version="12.1.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Data" />
-    </ItemGroup>
-
+  </Target>
 </Project>
