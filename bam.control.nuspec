@@ -1,7 +1,7 @@
 ﻿<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>bam.control</id>
-    <version>1.0.5-test+d9fd822</version>
+    <version>1.0.5-test+1ac8138</version>
     <authors>Bryan Apellanes</authors>
     <description>bam.control</description>
   </metadata>
